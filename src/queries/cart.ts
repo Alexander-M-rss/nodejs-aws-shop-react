@@ -11,7 +11,11 @@ export function useCart() {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },
     });
-    return res.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = (res.data as any).data.cart.items as CartItem[];
+
+    return result;
+    // return res.data;
   });
 }
 
